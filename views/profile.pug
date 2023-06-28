@@ -1,0 +1,97 @@
+extends layout 
+
+block variables
+
+	- if (user[0]) user = user[0]
+
+block content
+
+	body(style="overflow-y: scroll")
+		script(defer src="/node_modules/@fortawesome/fontawesome-free/js/all.js")
+		.position-fixed.d-flex.align-items-center.justify-content-center(id="change-password-modal-bg" style="height: 100vh; width: 100vw; visibility: hidden; opacity: 0; background: rgba(0,0,0,0.5); z-index: 1500")
+			.position-relative.d-block.rounded(id="change-password-modal" style="background: #202124; width: 500px; max-width: 100% !important")
+				.row.m-0.p-0
+					.col-12.p-4
+						.float-end
+							.btn-close-change-password-modal(style="cursor: pointer")
+								.fa-solid.fa-xmark(style="font-size: 20px; margin-top: 4px")
+						.p-0(id="alert-box-msg")
+							h4 Change Password
+							p.mt-3.mb-4.pt-4.border-light-top Create a new password. Passwords must be at least 8 characters long and contain at least one letter, one number, and one special character.
+							div Current Password
+							input.mt-2.mb-3.px-2.py-2.text-white.form-control.bg-transparent(id="old-password" type="passsword" style="font-size: 12px; box-shadow: none")
+							div New Password
+							input.mt-2.mb-3.px-2.py-2.text-white.form-control.bg-transparent(id="new-password" type="passsword" style="font-size: 12px; box-shadow: none")
+							div Confirm New Password
+							input.mt-2.mb-3.px-2.py-2.text-white.form-control.bg-transparent(id="confirm-new-password" type="passsword" style="font-size: 12px; box-shadow: none")
+							button.btn.text-white.rounded.my-2(id="btn-save-new-password" tabindex=0 style="background: #bb86fc; padding: 9px 18px") Save Password
+		include include/nav-top.pug
+		.container-fluid
+			.row
+				.col-0.col-lg-3
+					include include/nav-side
+				.col.ms-0.ms-lg-3.content
+					.d-flex.align-items-center.rounded(style="height: 350px; background-color: #4158D0; background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%)")
+						.ms-5.rounded.shadow.d-flex.align-items-center.justify-content-center(style="height: 200px; width: 200px; background-color: #21D4FD;background-image: linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);")
+							.bg-white(style="width: 100px; height: 100px; -webkit-mask: url(/img/icon-user.svg) no-repeat center; mask: url(/img/icon-user.svg) no-repeat center")
+						.ms-5
+							.d-flex.align-items-center.justify-content-center
+								.bg-white.me-2(style="width: 32px; height: 32px; -webkit-mask: url(/img/icon-user.svg) no-repeat center; mask: url(/img/icon-user.svg) no-repeat center; margin-top: -8px")
+								h1 Your Profile
+					.row.m-0.p-0.mt-4.pt-3
+						.col-12.col-lg-8.m-0.p-0.pb-4
+							h4.d-flex.align-items-center
+								img(src="/img/icon-user.svg" style="width: 20px; margin-right: 10px")
+								span Profile Information
+							.py-3
+								.row.py-2.d-flex.align-items-center.justify-content-start
+									.col-3.fw-bold First Name:
+									.col-9 
+										input.form-control(type="text" value=`${user.fname}` style="font-size: 12px")
+								.row.py-2.d-flex.align-items-center.justify-content-start
+									.col-3.fw-bold Last Name:
+									.col-9 
+										input.form-control(type="text" value=`${user.lname}` style="font-size: 12px")
+								.row.py-2.d-flex.align-items-center.justify-content-start
+									.col-3.fw-bold Email Address:
+									.col-9 
+										input.form-control(type="text" value=`${user.email}` style="font-size: 12px")
+								.row.py-2.d-flex.align-items-center.justify-content-start
+									.col-12 
+										button.btn.my-2.text-white.fw-bold.rounded-pill(id="btn-update-profile" tabindex=0 style="background: #0d6efd; padding: 9px 18px") Update Profile Info
+								.row.py-2.d-flex.align-items-center.justify-content-start
+									.col-12.py-2
+										h5.d-flex.align-items-center
+											img(src="/img/icon-lock.svg" style="width: 16px; margin-right: 10px")
+											span Password
+								.row.py-2.d-flex.align-items-center.justify-content-start
+									.col-3.fw-bold Password:
+									.col-9 
+										input.form-control(type="password" value=`********` style="font-size: 12px" disabled)
+								.row.py-2.d-flex.align-items-center.justify-content-start
+									.col-12 
+										button.btn.my-2.text-white.fw-bold.rounded-pill(id="btn-change-password" tabindex=0 style="background: #0d6efd; padding: 9px 18px") Change Password
+								.row.py-2.d-flex.align-items-center.justify-content-start
+									.col-12.py-2
+										h5.d-flex.align-items-center
+											img(src="/img/icon-social.svg" style="width: 16px; margin-right: 10px")
+											span Social Media Data
+								.row.py-2.d-flex.align-items-center.justify-content-start
+									.col-3.fw-bold Google ID:
+									.col-9 
+										input.form-control(type="text" value=`${user.google_id}` style="font-size: 12px" disabled)
+								.row.py-2.d-flex.align-items-center.justify-content-start
+									.col-3.fw-bold Google Image Link:
+									.col-9 
+										input.form-control(type="text" value=`${user.google_img}` style="font-size: 12px" disabled)
+								.row.py-2.d-flex.align-items-center.justify-content-start
+									.col-3.fw-bold Facebook ID:
+									.col-9 
+										input.form-control(type="text" value=`${user.facebook_id}` style="font-size: 12px" disabled)
+								.row.py-2.d-flex.align-items-center.justify-content-start
+									.col-3.fw-bold Facebook Image Link:
+									.col-9 
+										input.form-control(type="text" value=`${user.facebook_img}` style="font-size: 12px" disabled)
+								.row.py-2.d-flex.align-items-center.justify-content-start
+									.col-12 
+										button.btn.my-2.text-white.fw-bold.rounded-pill(id="btn-clear-social" tabindex=0 style="background: #0d6efd; padding: 9px 18px") Clear Social Media Data
