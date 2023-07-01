@@ -18,15 +18,58 @@ $(() => {
 			}})
 		}})
 	}
-	
+
 	// Quick script to set side navigation active page ...
 	if ($("aside a")) {
 		$("aside a").each(function(i, obj) {
-				if($(this).attr("href") === location.pathname) $(this).addClass("active")
-		})
+			if($(this).attr("href") === location.pathname) $(this).addClass("active")
+		})		
 	}
 
+	// Set theme check for selected theme, else default to operating system ....
+	if ($(".nav-top")) {
+		const theme = localStorage.getItem('data-theme');
+		if (theme) {
+			if (theme === "os") $("#theme-os").append("<div id='theme-check' class='float-end fa-solid fa-check' style='margin-top: 3px'></div>")
+			if (theme === "dark") $("#theme-dark").append("<div id='theme-check' class='float-end fa-solid fa-check' style='margin-top: 3px'></div>")
+			if (theme === "light") $("#theme-light").append("<div id='theme-check' class='float-end fa-solid fa-check' style='margin-top: 3px'></div>")
+		} else {
+			$("#theme-os").append("<div id='theme-check' class='float-end fa-solid fa-check' style='margin-top: 3px'></div>")
+		}
+	}
+	
 })
+
+// Change theme ...
+const changeTheme = (theme) => {
+	const addCheck = (theme) => {
+		$("#theme-check").remove();
+		$(`#theme-${theme}`).append("<div id='theme-check' class='float-end fa-solid fa-check' style='margin-top: 3px'></div>")
+	}
+	if (theme === "os") {
+		const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+		if (prefersDarkScheme.matches) {
+			document.documentElement.setAttribute("data-theme", "dark");
+			localStorage.setItem("data-theme", "os");
+			addCheck("os");
+		} else {
+			document.documentElement.setAttribute("data-theme", "light");
+			localStorage.setItem("data-theme", "os");
+			addCheck("os");
+		}
+	} else {
+		if (theme === "dark") {
+			document.documentElement.setAttribute("data-theme", theme)
+			localStorage.setItem("data-theme", theme)
+				addCheck("dark");
+		}
+		if (theme === "light") {
+			document.documentElement.setAttribute("data-theme", theme)
+			localStorage.setItem("data-theme", theme)
+				addCheck("light");
+		}
+	}
+}
 
 // Password visibility toggler ...
 if ($('.password-toggler')) {

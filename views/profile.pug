@@ -7,7 +7,6 @@ block variables
 block content
 
 	body(style="overflow-y: scroll")
-		script(defer src="/node_modules/@fortawesome/fontawesome-free/js/all.js")
 		.position-fixed.d-flex.align-items-center.justify-content-center(id="change-password-modal-bg" style="height: 100vh; width: 100vw; visibility: hidden; opacity: 0; background: rgba(0,0,0,0.5); z-index: 1500")
 			.position-relative.d-block.rounded(id="change-password-modal" style="background: #202124; width: 500px; max-width: 100% !important")
 				.row.m-0.p-0
@@ -37,7 +36,7 @@ block content
 						.ms-5
 							.d-flex.align-items-center.justify-content-center
 								.bg-white.me-2(style="width: 32px; height: 32px; -webkit-mask: url(/img/icon-user.svg) no-repeat center; mask: url(/img/icon-user.svg) no-repeat center; margin-top: -8px")
-								h1 Your Profile
+								h1.text-white Your Profile
 					.row.m-0.p-0.mt-4.pt-3
 						.col-12.col-lg-8.m-0.p-0.pb-4
 							h4.d-flex.align-items-center
@@ -58,7 +57,7 @@ block content
 										input.form-control(type="text" value=`${user.email}` style="font-size: 12px")
 								.row.py-2.d-flex.align-items-center.justify-content-start
 									.col-12 
-										button.btn.my-2.text-white.fw-bold.rounded-pill(id="btn-update-profile" tabindex=0 style="background: #0d6efd; padding: 9px 18px") Update Profile Info
+										button.btn.my-2.text-white.fw-bold.rounded(id="btn-update-profile" tabindex=0 style="background: #0d6efd; padding: 9px 18px") Update Profile Info
 								.row.py-2.d-flex.align-items-center.justify-content-start
 									.col-12.py-2
 										h5.d-flex.align-items-center
@@ -70,7 +69,7 @@ block content
 										input.form-control(type="password" value=`********` style="font-size: 12px" disabled)
 								.row.py-2.d-flex.align-items-center.justify-content-start
 									.col-12 
-										button.btn.my-2.text-white.fw-bold.rounded-pill(id="btn-change-password" tabindex=0 style="background: #0d6efd; padding: 9px 18px") Change Password
+										button.btn.my-2.text-white.fw-bold.rounded(id="btn-change-password" tabindex=0 style="background: #0d6efd; padding: 9px 18px") Change Password
 								.row.py-2.d-flex.align-items-center.justify-content-start
 									.col-12.py-2
 										h5.d-flex.align-items-center
@@ -94,4 +93,4 @@ block content
 										input.form-control(type="text" value=`${user.facebook_img}` style="font-size: 12px" disabled)
 								.row.py-2.d-flex.align-items-center.justify-content-start
 									.col-12 
-										button.btn.my-2.text-white.fw-bold.rounded-pill(id="btn-clear-social" tabindex=0 style="background: #0d6efd; padding: 9px 18px") Clear Social Media Data
+										button.btn.my-2.text-white.fw-bold.rounded(id="btn-clear-social" tabindex=0 style="background: #0d6efd; padding: 9px 18px") Clear Social Media Data

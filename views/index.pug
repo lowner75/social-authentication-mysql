@@ -11,12 +11,11 @@ block content
 				.col-0.col-lg-3
 					include include/nav-side
 				.col.ms-0.ms-lg-3.content
-					.d-flex.align-items-center.justify-content-center.rounded(style="height: 350px; background-color: #4158D0; background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%)")
+					.d-flex.align-items-center.justify-content-center.rounded(style="height: 350px; background: #4158D0; background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%)")
 						.d-flex.align-items-center.justify-content-center
-							//.bg-white.me-2(style="width: 30px; height: 30px; -webkit-mask: url(/img/icon-home.svg) no-repeat center; mask: url(/img/icon-user.svg) no-repeat center; margin-top: -8px")
-							img(src="/img/logo-abstract.png" style="width: 30px; margin-top: -8px; margin-right: 15px")
-							h1 Social.Auth
-					.p-5.text-white.text-center.d-flex.align-items-center.justify-content-center
-						.d-inline-block.px-5
+							img(src="/img/logo.png" style="width: 30px; margin-top: -8px; margin-right: 12px")
+							h1.text-white Social.Auth
+					.p-5.text-center.d-flex.align-items-center.justify-content-center
+						.px-5
 							h3.pb-4 A simple Node.js / Express application for social authentication.
-							.lead(style="color: rgba(255,255,255,0.6)") Authentication is Passport JS based using Google OAuth2, Facebook, and local strategies, and uses a MySQL database to store user data upon signing up / logging in. The app also allows users to sign up with email.
+							div(style="font-size: 20px") Authentication is Passport JS based using Google OAuth2, Facebook, and local strategies, and uses a MySQL database to store user data upon signing up / logging in. The app also allows users to sign up with email.

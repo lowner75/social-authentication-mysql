@@ -1,9 +1,19 @@
-.container-fluid.py-3.shadow-sm(style="background: #292a2d; padding: 0 32px; border-bottom: solid 1px rgba(255,255,255,0.05)")
-  .user-dropdown.float-end(style="margin-top: 7px")
-    .d-flex.align-items-center
-      .bg-white(style="width: 20px; height: 20px; -webkit-mask: url(/img/icon-user.svg) no-repeat center; mask: url(/img/icon-user.svg) no-repeat center")
-      div(style="margin: 5px 0 0 10px; border-width: 5px; border-style: solid; border-color: #fff transparent transparent transparent")
+.nav-top.container-fluid.py-3(style="padding: 0 32px")
+  .user-dropdown.position-relative.ps-3.d-flex.align-items-center.float-end(style="margin-top: -3px; padding-top: 10px; padding-bottom: 10px")
+    .user-icon(style="width: 20px; height: 20px; -webkit-mask: url(/img/icon-user.svg) no-repeat center; mask: url(/img/icon-user.svg) no-repeat center")
+    .chevron-down(style="margin: 5px 0 0 10px; border-width: 5px; border-style: solid")
+    .user-dropdown-menu.position-absolute.shadow-sm
+      .user-dropdown-menu-inner.px-1
+        .my-1.px-2.py-2.theme-link(id="theme-os" onclick='changeTheme("os")')
+          .fa-solid.fa-circle-half-stroke.me-2
+          span Operating System
+        .my-1.px-2.py-2.theme-link(id="theme-dark" onclick='changeTheme("dark")')
+          .fa-regular.fa-moon.me-2
+          span Dark Theme
+        .my-1.px-2.py-2.theme-link(id="theme-light" onclick='changeTheme("light")')
+          .fa-regular.fa-sun.me-2
+          span Light Theme
   .logo.d-flex.align-items-center(style="margin-top: 2px")
-    a.me-3(href="/")
-      img.d-block(src="/img/logo-abstract.png" style="width: 18px")
+    a.me-2(href="/")
+      img.logo-img.d-block(src="/img/logo.png" style="width: 18px")
     a(href="/") Social.Auth

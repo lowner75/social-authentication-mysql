@@ -15,71 +15,71 @@ html(lang="en")
 							.btn-close-alert-box.px-3(style="cursor: pointer")
 								.fa-solid.fa-xmark(style="font-size: 20px")
 		.position-absolute.d-flex.align-items-center.justify-content-center(id="logo-preloader" style="min-height: 100vh !important; min-width: 100vw !important; visibility: hidden; opacity: 0")
-			img(src="/img/logo-abstract.png" style="width: 70px")
-		.d-flex.align-items-center.justify-content-center(id="login-container" style="max-width: 100%; min-height: 100vh !important; opacity: 0")
+			img.logo-img(src="/img/logo.png" style="width: 70px")
+		.auth.d-flex.align-items-center.justify-content-center(id="login-container" style="max-width: 100%; min-height: 100vh !important; opacity: 0")
 			.row.m-0.p-0
 				.col-12.p-0.m-auto.position-relative(style="min-height: 600px; width: 400px; max-width: 100%")
 					.login.px-4.px-md-5.position-absolute(style="display: block; min-width: 400px; max-width: 100%")
 						.py-5.text-start.mx-auto
-							.px-1.login-stagger.text-center(style="text-shadow: 1px 1px 1px rgba(15,5,76,1)")
-								img(src="/img/logo-abstract.png" style="width: 28px; margin: 0 12px 6px 0")
-								h2.pt-3.pb-2
-									span(style="font-size: 28px; letter-spacing: -0.00em") Social.Auth
+							.px-1.login-stagger.text-center
+								img.logo-img(src="/img/logo.png" style="width: 28px; margin: 0 12px 6px 0")
+								h2.pt-2.pb-2
+									span(style="font-size: 28px") Social.Auth
 							.pt-2.form-row.login-stagger
-								.input-group.px-1.py-2.w-100.form-control.rounded-0.bg-transparent(style="padding: 3px 8px; border: none; border-bottom: solid 1px rgba(255,255,255,0.65)")
-									.input-group-prepend.m-0.justify-content-start(style="width: 20px")
-										.fa-solid.fa-envelope(style="font-size: 12px; color: rgba(255,255,255,0.5)")
-									input.px-2.py-1.text-white.border-0.bg-transparent(id="email" type="text" placeholder="Your Email" style="width: calc(100% - 20px); border: none !important; box-shadow: none")
+								.input-group.w-100.form-control(style="padding: 3px 8px; border: none; border-bottom: solid 1px var(--mid-tone)")
+									.input-group-prepend.justify-content-start(style="width: 20px")
+										.fa-solid.fa-envelope
+									input.px-2.py-1.border-0.bg-transparent(id="email" type="text" placeholder="Your Email" style="width: calc(100% - 20px); border: none !important; box-shadow: none")
 							.py-2.form-row.login-stagger
-								.input-group.px-1.py-2.form-control.rounded-0.bg-transparent.d-flex.justify-content-between(style="border: none; border-bottom: solid 1px rgba(255,255,255,0.65); padding: 3px 8px")
+								.input-group.form-control.d-flex.justify-content-between(style="border: none; border-bottom: solid 1px var(--mid-tone); padding: 3px 8px")
 									.input-group-prepend.text-start(style="width: 20px; margin-left: 2px")
-										.fa-solid.fa-lock(style="font-size: 12px; color: rgba(255,255,255,0.5)")
-									input.px-2.py-1.text-white.form-control.border-0.shadow-none.bg-transparent.password(id="password" type="password" placeholder="Your Password" style="font-size: 12px; border: none !important")
+										.fa-solid.fa-lock
+									input.px-2.py-1.form-control.border-0.shadow-none.bg-transparent.password(id="password" type="password" placeholder="Your Password" style="font-size: 12px; border: none !important")
 									.input-group-postpend.text-center.password-toggler.rounded-circle(style="width: 26px")
-										.eye.fa-solid.fa-eye-slash(id="eye" style="font-size: 12px; color: rgba(255,255,255,0.5); cursor: pointer")
+										.eye.fa-solid.fa-eye-slash(id="eye" style="font-size: 12px; cursor: pointer")
 							.text-center
-								button.mt-2.w-100.btn.text-white.rounded-0.login-stagger(id="btn-login" tabindex=0 style="background: #292a2d; padding: 9px") Login
+								button.mt-2.w-100.btn.btn-muted.login-stagger(id="btn-login" tabindex=0 style="padding: 9px") Login
 								.text-start.mt-2
-									a(href="/reset/" style="font-size: 11px; text-decoration: none; color: rgba(255,255,255,0.5)") Forgotten Password?
+									a(href="/reset/" style="font-size: 11px; text-decoration: none") Forgotten Password?
 								.py-4.login-stagger OR
 								.pb-2.position-relative
-									a.w-100.btn.text-white.rounded-0.login-stagger(href="/auth/google" style="background: #292a2d; padding: 9px") Continue with Google
+									a.w-100.btn.btn-muted.login-stagger(href="/auth/google" style="padding: 9px") Continue with Google
 								.pb-2.position-relative
-									a.w-100.btn.text-white.rounded-0.login-stagger(href="/auth/facebook" style="background: #292a2d; padding: 9px") Continue with Facebook
+									a.w-100.btn.btn-muted.login-stagger(href="/auth/facebook" style="padding: 9px") Continue with Facebook
 								.pb-3
-									a.w-100.btn.text-white.rounded-0.login-stagger(id="btn-switch-to-sign-up" tabindex=0 style="background: #0d6efd; padding: 9px") Sign up with Email
+									a.w-100.btn.text-white.login-stagger(id="btn-switch-to-sign-up" tabindex=0 style="background: #0d6efd; padding: 9px") Sign up with Email
 					.sign-up.px-4.px-md-5.position-absolute(style="display: block; visibility: hidden; opacity: 0; min-width: 400px; max-width: 100%")
-						.py-5.text-start.mx-auto(style="font-size: 12px")
-							.px-1.text-center(style="text-shadow: 1px 1px 1px rgba(15,5,76,1)")
-								img(src="/img/logo-abstract.png" style="width: 28px; margin: 0 12px 6px 0")
-								h2.pt-3.pb-2
-									span(style="font-size: 28px; letter-spacing: -0.00em") Social.Auth
+						.py-5.text-start.mx-auto
+							.px-1.text-center
+								img.logo-img(src="/img/logo.png" style="width: 28px; margin: 0 12px 6px 0")
+								h2.pt-2.pb-2
+									span(style="font-size: 28px") Social.Auth
 							.pt-2.form-row
-								.input-group.px-1.py-2.w-100.form-control.rounded-0.bg-transparent(style="padding: 3px 8px; border: none; border-bottom: solid 1px rgba(255,255,255,0.65)")
+								.input-group.px-3.py-2.w-100.form-control(style="padding: 3px 8px; border: none; border-bottom: solid 1px var(--mid-tone)")
 									.input-group-prepend.m-0.text-start(style="width: 20px")
-										.fa-solid.fa-user(style="font-size: 12px; color: rgba(255,255,255,0.5)")
-									input.px-2.py-1.text-white.border-0.bg-transparent(id="fname" type="text" placeholder="First Name" style="width: calc(100% - 20px); border: none !important; box-shadow: none")
+										.fa-solid.fa-user
+									input.px-2.py-1.text-white.bg-transparent(id="fname" type="text" placeholder="First Name" style="width: calc(100% - 20px); border: none !important; box-shadow: none")
 							.pt-2.form-row
-								.input-group.px-1.py-2.w-100.form-control.rounded-0.bg-transparent(style="padding: 3px 8px; border: none; border-bottom: solid 1px rgba(255,255,255,0.65)")
+								.input-group.px-3.py-2.w-100.form-control(style="padding: 3px 8px; border: none; border-bottom: solid 1px var(--mid-tone)")
 									.input-group-prepend.m-0.text-start(style="width: 20px")
-										.fa-solid.fa-user(style="font-size: 12px; color: rgba(255,255,255,0.5)")
-									input.px-2.py-1.text-white.border-0.bg-transparent(id="lname" type="text" placeholder="Last Name" style="width: calc(100% - 20px); border: none !important; box-shadow: none")
+										.fa-solid.fa-user
+									input.px-2.py-1.text-white.bg-transparent(id="lname" type="text" placeholder="Last Name" style="width: calc(100% - 20px); border: none !important; box-shadow: none")
 							.pt-2.form-row
-								.input-group.px-1.py-2.w-100.form-control.rounded-0.bg-transparent(style="padding: 3px 8px; border: none; border-bottom: solid 1px rgba(255,255,255,0.65)")
+								.input-group.px-3.py-2.w-100.form-control(style="padding: 3px 8px; border: none; border-bottom: solid 1px var(--mid-tone)")
 									.input-group-prepend.m-0.text-start(style="width: 20px")
-										.fa-solid.fa-envelope(style="font-size: 12px; color: rgba(255,255,255,0.5)")
-									input.px-2.py-1.text-white.border-0.bg-transparent(id="signup-email" type="text" placeholder="Your Email" style="width: calc(100% - 20px); border: none !important; box-shadow: none")
+										.fa-solid.fa-envelope
+									input.px-2.py-1.text-white.bg-transparent(id="signup-email" type="text" placeholder="Your Email" style="width: calc(100% - 20px); border: none !important; box-shadow: none")
 							.py-2.form-row
-								.input-group.px-1.py-2.form-control.rounded-0.bg-transparent.d-flex.justify-content-between(style="border: none; border-bottom: solid 1px rgba(255,255,255,0.65); padding: 3px 8px")
+								.input-group.px-3.py-2.form-control.d-flex.justify-content-between(style="border: none; border-bottom: solid 1px var(--mid-tone); padding: 3px 8px")
 									.input-group-prepend.text-start(style="width: 20px; margin-left: 2px")
-										.fa-solid.fa-lock(style="font-size: 12px; color: rgba(255,255,255,0.5)")
-									input.px-2.py-1.text-white.form-control.border-0.shadow-none.bg-transparent.password(id="signup-password" type="password" placeholder="Your Password" style="font-size: 12px; border: none !important; box-shadow: none")
+										.fa-solid.fa-lock
+									input.px-2.py-1.text-white.form-control.shadow-none.bg-transparent.password(id="signup-password" type="password" placeholder="Your Password" style="font-size: 12px; border: none !important; box-shadow: none")
 									.input-group-postpend.text-center.password-toggler.rounded-circle(style="width: 26px")
-										.eye.fa-solid.fa-eye-slash(id="eye" style="font-size: 12px; color: rgba(255,255,255,0.5); cursor: pointer")
+										.eye.fa-solid.fa-eye-slash(id="eye" style="font-size: 12px; cursor: pointer")
 							.text-center
-								.mt-2.w-100.btn.text-white.rounded-0(id="btn-sign-up" tabindex=0 style="background: #292a2d; padding: 9px") Create Account
+								.mt-2.w-100.btn.btn-muted(id="btn-sign-up" tabindex=0 style="padding: 9px") Create Account
 								.py-4 OR
 								.pb-3
-									a.w-100.btn.text-white.rounded-0(id="btn-switch-to-login" tabindex=0 style="background: #0d6efd; padding: 9px") Return to Login Screen
+									a.w-100.btn.text-white(id="btn-switch-to-login" tabindex=0 style="background: #0d6efd; padding: 9px") Return to Login Screen
 		include include/footer.pug
 		include include/scripts.pug
