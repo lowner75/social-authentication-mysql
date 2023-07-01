@@ -51,8 +51,12 @@ body {
   }
 }
 
-.sa-modal {
+.social-modal {
+  border-radius: 10px;
   background: var(--bg);
+  @media (max-width: 576px) {
+    border-radius: 0;
+  }
 }
 
 .fa-envelope, .fa-lock, .fa-eye-slash, .fa-user {
@@ -61,8 +65,10 @@ body {
 }
 
 .container-fluid {
-  padding: 0 32px;
-  max-width: 1920px !important;
+  @media (min-width: 576px) {
+    padding: 0 32px;
+    max-width: 1920px !important;
+  }
 }
 
 .nav-top {
@@ -148,6 +154,7 @@ aside {
     visibility: visible;
   }
   .user-icon {
+    opacity: 0.9;
     background: var(--color-heading);
   }
   .chevron-down {

@@ -8,7 +8,7 @@ block content
 
 	body(style="overflow-y: scroll")
 		.position-fixed.d-flex.align-items-center.justify-content-center(id="change-password-modal-bg" style="height: 100vh; width: 100vw; visibility: hidden; opacity: 0; background: rgba(0,0,0,0.5); z-index: 1500")
-			.position-relative.d-block.rounded.sa-modal(id="change-password-modal" style="width: 500px; max-width: 100% !important")
+			.position-relative.d-block.social-modal(id="change-password-modal" style="width: 500px; max-width: 100% !important")
 				.row.m-0.p-0
 					.col-12.p-4
 						.float-end
@@ -25,15 +25,15 @@ block content
 							input.mt-2.mb-3.px-2.py-2.form-control.bg-transparent(id="confirm-new-password" type="passsword" style="font-size: 12px; box-shadow: none")
 							button.btn.text-white.rounded.my-2(id="btn-save-new-password" tabindex=0 style="background: #0d6efd; padding: 9px 18px") Save Password
 		include include/nav-top.pug
-		.container-fluid
+		.container-fluid.m-0.m-sm-inherit
 			.row
 				.col-0.col-lg-3
 					include include/nav-side
 				.col.ms-0.ms-lg-3.content
-					.d-flex.align-items-center.rounded(style="height: 350px; background-color: #4158D0; background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%)")
-						.ms-5.rounded.shadow.d-flex.align-items-center.justify-content-center(style="height: 200px; width: 200px; background-color: #21D4FD;background-image: linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);")
+					.d-flex.flex-column.flex-sm-row.align-items-center.justify-content-center.justify-content-sm-start.rounded(style="height: 350px; background-color: #4158D0; background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%)")
+						.ms-sm-5.d-flex.align-items-center.justify-content-center.rounded.shadow(style="height: 200px; width: 200px; background-color: #21D4FD;background-image: linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);")
 							.bg-white(style="width: 100px; height: 100px; -webkit-mask: url(/img/icon-user.svg) no-repeat center; mask: url(/img/icon-user.svg) no-repeat center")
-						.ms-5
+						.ms-0.ms-sm-5.pt-4.pt-sm-0
 							.d-flex.align-items-center.justify-content-center
 								.bg-white.me-2(style="width: 32px; height: 32px; -webkit-mask: url(/img/icon-user.svg) no-repeat center; mask: url(/img/icon-user.svg) no-repeat center; margin-top: -8px")
 								h1.text-white Your Profile
