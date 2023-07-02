@@ -1,0 +1,23 @@
+extends layout 
+
+block variables
+
+  - if (user[0]) user = user[0]
+
+block content
+
+  body(style="overflow-y: scroll")
+    include include/nav-top.pug
+    .container-fluid.m-0.m-sm-inherit
+      .row
+        .col-0.col-lg-3
+          include include/nav-side
+        .col.ms-0.ms-lg-3.content
+          .main-bg-1.d-flex.align-items-center.justify-content-center.rounded
+            .d-flex.align-items-center.justify-content-center
+              .bg-white.me-2(style="width: 32px; height: 32px; -webkit-mask: url(/img/icon-settings.svg) no-repeat center; mask: url(/img/icon-settings.svg) no-repeat center; margin-top: -8px")
+              h1.text-white Admin
+          .px-2.py-5.p-sm-5.text-center.d-flex.align-items-center.justify-content-center
+            .px-0.px-sm-5
+              h3.pb-4 
+              div(style="font-size: 20px") 

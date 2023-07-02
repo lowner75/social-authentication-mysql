@@ -124,7 +124,7 @@ $("#btn-change-password").on("click", () => {
 const errorHandler = (err) => {
 
 	// Pass error details to alert modal ...
-	$("#alert-box-msg").html(`<p class="mb-2" style="font-weight: 500">Soical.Auth Error:</p>${err.responseJSON}`)
+	$("#alert-box-msg").html(`<p class="mb-2" style="font-weight: 500">Social.Auth Error:</p>${JSON.stringify(err.responseJSON)}`)
 
 	// Open modal ...
 	openModal("#alert-box", "#alert-box-bg")

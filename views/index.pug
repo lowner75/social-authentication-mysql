@@ -2,11 +2,13 @@ extends layout
 
 block variables
 
+	- if (user[0]) user = user[0]
+
 block content
 
 	body(style="overflow-y: scroll")
 		include include/nav-top.pug
-		.container-fluid
+		.container-fluid.m-0.m-sm-inherit
 			.row
 				.col-0.col-lg-3
 					include include/nav-side
@@ -15,7 +17,7 @@ block content
 						.d-flex.align-items-center.justify-content-center
 							img(src="/img/logo.png" style="width: 30px; margin-top: -8px; margin-right: 12px")
 							h1.text-white Social.Auth
-					.p-5.text-center.d-flex.align-items-center.justify-content-center
-						.px-5
+					.px-2.py-5.p-sm-5.text-center.d-flex.align-items-center.justify-content-center
+						.px-0.px-sm-5
 							h3.pb-4 A simple Node.js / Express application for social authentication.
 							div(style="font-size: 20px") Authentication is Passport JS based using Google OAuth2, Facebook, and local strategies, and uses a MySQL database to store user data upon signing up / logging in. The app also allows users to sign up with email.

@@ -8,6 +8,11 @@ aside.sticky-top
       .nav-link
         img.me-3(src="/img/icon-user.svg" style="width: 16px")
         | Your Profile
+    if user.user_admin == 1
+      a(href="/admin/")
+        .nav-link(style="margin-top: 0")
+          img.me-3(src="/img/icon-settings.svg" style="width: 16px")
+          | Admin
     a(href="/logout/")
       .nav-link
         img.me-3(src="/img/icon-logout.svg" style="width: 16px")

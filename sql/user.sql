@@ -9,7 +9,7 @@ CREATE TABLE `user` (
   `google_img` varchar(255) DEFAULT NULL,
   `facebook_id` varchar(30) DEFAULT NULL,
   `facebook_img` varchar(255) DEFAULT NULL,
-  `user_active` tinyint NOT NULL DEFAULT '0',
+  `user_active` tinyint NOT NULL DEFAULT '1',
   `user_admin` tinyint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)

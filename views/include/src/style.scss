@@ -51,17 +51,34 @@ body {
   }
 }
 
-.social-modal {
-  border-radius: 10px;
-  background: var(--bg);
-  @media (max-width: 576px) {
-    border-radius: 0;
-  }
+.main-bg-1 {
+  height: 350px;
+  background-color: #4158D0;
+  background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
 }
 
-.fa-envelope, .fa-lock, .fa-eye-slash, .fa-user {
-  color: var(--color-text);
-  font-size: 12px;
+.main-bg-2 {
+  height: 350px;
+  background-color: #08AEEA;
+    background-image: linear-gradient(0deg, #08AEEA 0%, #2AF598 100%);
+}
+
+.main-bg-3 {
+  height: 350px;
+  background-color: #FBDA61;
+  background-image: linear-gradient(45deg, #FBDA61 0%, #FF5ACD 100%);
+}
+
+.main-bg-4 {
+  height: 350px;
+  background-color: #FA8BFF;
+  background-image: linear-gradient(45deg, #FA8BFF 0%, #2BD2FF 52%, #2BFF88 90%);
+}
+
+.main-bg-5 {
+  height: 350px;
+  background-color: #0093E9;
+  background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
 }
 
 .container-fluid {
@@ -71,13 +88,33 @@ body {
   }
 }
 
-.nav-top {
-  background: var(--bg-panel);
-  border-bottom: solid 1px var(--mid-tone);
-}
-
 .content {
   padding-top: 32px;
+}
+
+.fa-envelope,
+.fa-lock,
+.fa-eye-slash,
+.fa-user {
+  color: var(--color-text);
+  font-size: 12px;
+}
+
+.social-modal {
+  border-radius: 6px;
+  background: var(--bg);
+  @media (max-width: 576px) {
+    border-radius: 0;
+  }
+}
+
+.nav-top {
+  padding: 0 32px;
+  background: var(--bg-panel);
+  border-bottom: solid 1px var(--mid-tone);
+  @media (max-width: 576px) {
+    padding: 0 10pt;
+  }
 }
 
 aside {
@@ -137,15 +174,6 @@ aside {
   text-decoration: none;
 }
 
-.nav-logo {
-  color: #fff;
-  font-size: 18px;
-  font-weight: 600;
-  line-height: 1;
-  padding: 40px 0 20px 0;
-  text-align: center;
-}
-
 .user-dropdown {
   z-index: 1500;
   cursor: pointer;
@@ -158,6 +186,8 @@ aside {
     background: var(--color-heading);
   }
   .chevron-down {
+    border-width: 5px;
+    border-style: solid;
     border-color: var(--color-heading) transparent transparent transparent
   }
 }

@@ -7,19 +7,33 @@ const express = require('express')
 const router = express.Router()
 const connectEnsureLogin = require("connect-ensure-login")
 
-// Index route ...
-router.get("/", connectEnsureLogin.ensureLoggedIn("/login/"), (req, res) => {
-  res.render( "index", { title: "Social.Auth"} )
-})
-
 // Login route ...
 router.get("/login/", (req, res) => {
   res.render( "auth", { title: "Social.Auth" } )
 })
 
+// Index route ...
+router.get("/", connectEnsureLogin.ensureLoggedIn("/login/"), (req, res) => {
+  res.render( "index", { title: "Social.Auth", user: req.user } )
+})  
+
 // Profile route ...
 router.get("/profile/", connectEnsureLogin.ensureLoggedIn("/login/"), (req, res) => {
   res.render( "profile", { title: "Social.Auth", user: req.user } )
+})
+
+// Admin route ...
+router.get("/admin/", connectEnsureLogin.ensureLoggedIn("/login/"), (req, res) => {
+
+  // Required as req.user is returned as an array with some strategies ...
+  if (req.user[0]) req.user = req.user[0]
+
+  // Check user has admin privileges ...
+  if (req.user.user_admin == 1) {
+    res.render( "admin", { title: "Social.Auth", user: req.user } )
+  } else{
+    res.redirect("/login/")  
+  }
 })
 
 // Error route ...

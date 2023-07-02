@@ -18,8 +18,8 @@ router.post('/sign-up/',
 		try {
 			const hash = await argon2.hash(password, {
 				type: argon2.argon2id,
-				memoryCost: 2 ** 16,
-				hashLength: 100,
+				memoryCost: process.env.ARGON2_MEMORY_COST,
+				hashLength: process.env.ARGON2_HASHLENGTH,
 			});
 			password = hash
 		} catch (err) {
@@ -48,7 +48,7 @@ router.post('/sign-up/',
 						}
 					)
 				} else {
-					db.query("insert into user set fname = ?, lname = ?, email = ?, password = ?, provider = 'Local' user_active = 1", [req.body.fname, req.body.lname, req.body.email, password],
+					db.query("insert into user set fname = ?, lname = ?, email = ?, password = ?, provider = 'Local', user_active = 1", [req.body.fname, req.body.lname, req.body.email, password],
 						(err, user) => {
 							if (err) {
 								return res.status(500).json({ success: "failure", err: err })
