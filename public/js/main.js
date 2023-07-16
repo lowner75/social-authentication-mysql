@@ -50,13 +50,11 @@ const changeTheme = (theme) => {
 		const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
 		if (prefersDarkScheme.matches) {
 			document.documentElement.setAttribute("data-theme", "dark");
-			localStorage.setItem("data-theme", "os");
-			addCheck("os");
 		} else {
 			document.documentElement.setAttribute("data-theme", "light");
-			localStorage.setItem("data-theme", "os");
-			addCheck("os");
 		}
+		localStorage.setItem("data-theme", "os");
+		addCheck("os");
 	} else {
 		if (theme === "dark") {
 			document.documentElement.setAttribute("data-theme", theme)
@@ -93,47 +91,26 @@ if ($('.password-toggler')) {
 
 }
 
-// Open modal handler ...
-const openModal = (modal, modalBg) => {
-	gsap.to(modalBg, { duration: 0.5, autoAlpha: 1, ease: "power4.out" });
-	gsap.fromTo(modal, { y: 20 }, { duration: 0.5, y: 0, ease: "power4.out", onComplete: () => {
-		if ($("input")) $("input").trigger("focus")
-		if ($("#old-password")) $("#old-password").trigger("focus")
-	}});
-}
+// Modal handler ...
+const triggers = document.getElementsByClassName('modal-trigger');
+const triggerArray = Array.from(triggers).entries();
+const modals = document.getElementsByClassName('modal');
+const closeButtons = document.getElementsByClassName('btn-close-modal');
+window.addEventListener("keydown", (e) => { if (e.key === "Escape") $(".modal").removeClass("show-modal") });
 
-// Close modal handler ...
-const closeModal = (modal, modalBg) => {
-	gsap.to(modalBg, { duration: 0.25, autoAlpha: 0, ease: "power4.in" });
-	gsap.fromTo(modal, { y: 0 }, { duration: 0.25, y: 0, ease: "power4.in" });
+for (let [index, trigger] of triggerArray) {
+  const toggleModal = () => {
+    modals[index].classList.toggle("show-modal")
+  }
+  trigger.addEventListener("click", toggleModal)
+  closeButtons[index].addEventListener("click", toggleModal)
 }
 
 // Change password handler ...
 $("#btn-change-password").on("click", () => {
 
-	// Open modal ...
-	openModal("#change-password-modal", "#change-password-modal-bg")
-	
-	// Close modal ...
-	$(document).on("keydown", (e) => { if (e.key === "Escape" || e.key === "Enter") closeModal("#change-password-modal", "#change-password-modal-bg") });
-	$(".btn-close-change-password-modal").on("click", () => { closeModal("#change-password-modal", "#change-password-modal-bg") });
 
 })
-
-// Error handler ...
-const errorHandler = (err) => {
-
-	// Pass error details to alert modal ...
-	$("#alert-box-msg").html(`<p class="mb-2" style="font-weight: 500">Social.Auth Error:</p>${JSON.stringify(err.responseJSON)}`)
-
-	// Open modal ...
-	openModal("#alert-box", "#alert-box-bg")
-	
-	// Close modal ...
-	$(document).on("keydown", (e) => { if (e.key === "Escape" || e.key === "Enter") closeModal("#alert-box", "#alert-box-bg") });
-	$(".btn-close-alert-box").on("click", () => { closeModal("#alert-box", "#alert-box-bg") });
-
-}
 
 // Login handler ...
 $("#btn-login").on("click", () => {
@@ -148,7 +125,11 @@ $("#btn-login").on("click", () => {
 		url: "/auth/",
 		data: data,
 		dataType: "json",
-		error: (data) => errorHandler(data),
+		error: (data) => {
+			$(".modal-panel-content").html("Social.Auth encountered the following error:<br/>" + data.responseJSON)
+			document.querySelector(".modal").classList.toggle('show-modal')
+			document.querySelector(".btn-close-modal").addEventListener("click", () => document.querySelector(".modal").classList.remove('show-modal'))
+		},
 		success: () => window.location.href = "/profile/"
 	})
 
@@ -202,6 +183,38 @@ $("#btn-sign-up").on("click", () => {
 		error: (data) => errorHandler(data),
 		success: (data) => {
 			if (data.success === true) window.location.href = "/profile/"
+		}
+	})
+
+})
+
+// Change password handler ...
+$("#btn-save-new-password").on("click", () => {
+
+	const data = {
+		oldPassword: $("#old-password").val(),
+		newPassword: $("#new-password").val(),
+		confirmNewPassword: $("#confirm-new-password").val()
+	}
+
+	// Password regular expression checker ...
+	// 8 to 16 characters, at least one lowercase letter, one 
+	// uppercase letter, one numeric digit, and one special character ....
+	const regEx =  new RegExp(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.@_*\s).{8,16}$/)
+
+	// Check password meet regular expression check ...
+
+	// Check that old password and new password are not the same ...
+
+	$.ajax({
+		type: "POST",
+		url: "/api/change-password/",
+		dataType: "json",
+		data: data,
+		encode: true,
+		error: (data) => console.log(data),
+		success: (data) => {
+			console.log(data)
 		}
 	})
 

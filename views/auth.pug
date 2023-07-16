@@ -5,6 +5,12 @@ html(lang="en")
 		include include/head.pug 
 	body(style="overflow: hidden")
 		script(defer src="/node_modules/@fortawesome/fontawesome-free/js/all.js")
+		.modal.modal-0
+			.modal-panel(style="max-width: 400px")
+				.float-end
+					.btn-close-modal &times;
+				.modal-panel-header Social.Auth Error
+				.modal-panel-content 
 		.position-absolute.d-flex.align-items-center.justify-content-center(id="alert-box-bg" style="min-height: 100vh !important; min-width: 100vw !important; visibility: hidden; opacity: 0; background: rgba(0,0,0,0.5); z-index: 1500")
 			.m-0.p-0.d-flex.align-items-center.justify-content-center.rounded(id="alert-box" style="width: 380px; max-width: 100%")
 				.d-inline.text-start.w-100.rounded(style="background: #202124; border-left: solid 6px rgba(255,255,255,0.3)")
@@ -34,20 +40,20 @@ html(lang="en")
 								.input-group.form-control.d-flex.justify-content-between(style="border: none; border-bottom: solid 1px var(--mid-tone); padding: 3px 8px")
 									.input-group-prepend.text-start(style="width: 20px; margin-left: 2px")
 										.fa-solid.fa-lock
-									input.px-2.py-1.form-control.border-0.shadow-none.bg-transparent.password(id="password" type="password" placeholder="Your Password" style="font-size: 12px; border: none !important")
-									.input-group-postpend.text-center.password-toggler.rounded-circle(style="width: 26px")
+									input.px-2.py-1.form-control.border-0.shadow-none.bg-transparent.password(id="password" type="password" maxlength="16" placeholder="Your Password" style="font-size: 12px; border: none !important")
+									.input-group-postpend.text-center.password-toggler.rounded-circle(style="margin-top: -2px; height: 26px; width: 26px")
 										.eye.fa-solid.fa-eye-slash(id="eye" style="font-size: 12px; cursor: pointer")
 							.text-center
-								button.mt-2.w-100.btn.btn-muted.login-stagger(id="btn-login" tabindex=0 style="padding: 9px") Login
+								button.mt-2.w-100.btn.btn-muted.login-stagger.rounded-0(id="btn-login" tabindex=0 style="padding: 9px") Login
 								.text-start.mt-2
 									a(href="/reset/" style="font-size: 11px; text-decoration: none") Forgotten Password?
 								.py-4.login-stagger OR
 								.pb-2.position-relative
-									a.w-100.btn.btn-muted.login-stagger(href="/auth/google" style="padding: 9px") Continue with Google
+									a.w-100.btn.btn-muted.rounded-0(href="/auth/google" style="padding: 9px") Continue with Google
 								.pb-2.position-relative
-									a.w-100.btn.btn-muted.login-stagger(href="/auth/facebook" style="padding: 9px") Continue with Facebook
+									a.w-100.btn.btn-muted.rounded-0(href="/auth/facebook" style="padding: 9px") Continue with Facebook
 								.pb-3
-									a.w-100.btn.text-white.login-stagger(id="btn-switch-to-sign-up" tabindex=0 style="background: #0d6efd; padding: 9px") Sign up with Email
+									button.w-100.btn.text-white.rounded-0(id="btn-switch-to-sign-up" tabindex=0 style="background: #0d6efd; padding: 9px") Sign up with Email
 					.sign-up.px-4.px-md-5.position-absolute(style="display: block; visibility: hidden; opacity: 0; min-width: 400px; max-width: 100%")
 						.py-5.text-start.mx-auto
 							.px-1.text-center
@@ -73,13 +79,13 @@ html(lang="en")
 								.input-group.px-3.py-2.form-control.d-flex.justify-content-between(style="border: none; border-bottom: solid 1px var(--mid-tone); padding: 3px 8px")
 									.input-group-prepend.text-start(style="width: 20px; margin-left: 2px")
 										.fa-solid.fa-lock
-									input.px-2.py-1.text-white.form-control.shadow-none.bg-transparent.password(id="signup-password" type="password" placeholder="Your Password" style="font-size: 12px; border: none !important; box-shadow: none")
-									.input-group-postpend.text-center.password-toggler.rounded-circle(style="width: 26px")
+									input.px-2.py-1.text-white.form-control.shadow-none.bg-transparent.password(id="signup-password" type="password" maxlength="16" placeholder="Your Password" style="font-size: 12px; border: none !important; box-shadow: none")
+									.input-group-postpend.text-center.password-toggler.rounded-circle(style="margin-top: -2px; height: 26px; width: 26px")
 										.eye.fa-solid.fa-eye-slash(id="eye" style="font-size: 12px; cursor: pointer")
 							.text-center
-								.mt-2.w-100.btn.btn-muted(id="btn-sign-up" tabindex=0 style="padding: 9px") Create Account
+								button.mt-2.w-100.btn.btn-muted.rounded-0(id="btn-sign-up" tabindex=0 style="padding: 9px") Create Account
 								.py-4 OR
 								.pb-3
-									a.w-100.btn.text-white(id="btn-switch-to-login" tabindex=0 style="background: #0d6efd; padding: 9px") Return to Login Screen
+									button.w-100.btn.text-white.rounded-0(id="btn-switch-to-login" tabindex=0 style="background: #0d6efd; padding: 9px") Return to Login Screen
 		include include/footer.pug
 		include include/scripts.pug

@@ -1,17 +1,18 @@
 .nav-top.py-3
-  .user-dropdown.position-relative.ps-3.d-flex.align-items-center.float-end(style="margin-top: -2px; padding-top: 10px; padding-bottom: 10px")
-    .user-icon(style="width: 18px; height: 18px; -webkit-mask: url(/img/icon-theme.svg) no-repeat center; mask: url(/img/icon-user.svg) no-repeat center")
+  .user-dropdown.position-relative.ps-3.d-flex.align-items-center.float-end(style="margin-top: -5px; padding-top: 10px; padding-bottom: 10px")
+    //.user-icon(style="width: 18px; height: 18px; -webkit-mask: url(/img/icon-user.svg) no-repeat center; mask: url(/img/icon-user.svg) no-repeat center")
+    img.shadow-sm.rounded(src="/img/theme.png" style="width: 24px; height: 24px")
     .chevron-down(style="margin: 5px 0 0 8px")
     .user-dropdown-menu.position-absolute.shadow-sm
       .user-dropdown-menu-inner.px-1
         .my-1.px-2.py-2.theme-link(id="theme-os" onclick='changeTheme("os")')
-          .fa-solid.fa-circle-half-stroke.me-2
+          .fa-solid.fa-circle-half-stroke(style="margin-right: 11px")
           span Operating System
         .my-1.px-2.py-2.theme-link(id="theme-dark" onclick='changeTheme("dark")')
-          .fa-regular.fa-moon.me-2
+          .fa-regular.fa-moon(style="margin-left: 2px; margin-right: 13px")
           span Dark Theme
         .my-1.px-2.py-2.theme-link(id="theme-light" onclick='changeTheme("light")')
-          .fa-regular.fa-sun.me-2
+          .fa-regular.fa-sun(style="margin-right: 12px")
           span Light Theme
   .logo.d-flex.align-items-center(style="margin-top: 2px")
     a(href="/" style="margin-right: 12px")

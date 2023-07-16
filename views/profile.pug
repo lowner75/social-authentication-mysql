@@ -7,23 +7,35 @@ block variables
 block content
 
 	body(style="overflow-y: scroll")
-		.position-fixed.d-flex.align-items-center.justify-content-center(id="change-password-modal-bg" style="height: 100vh; width: 100vw; visibility: hidden; opacity: 0; background: rgba(0,0,0,0.5); z-index: 1500")
-			.position-relative.d-block.social-modal(id="change-password-modal" style="width: 500px; max-width: 100% !important")
-				.row.m-0.p-0
-					.col-12.p-4.my-2
-						.float-end
-							.btn-close-change-password-modal(style="cursor: pointer")
-								.fa-solid.fa-xmark(style="font-size: 20px; margin-top: 4px")
-						.p-0
-							h5 Change Password
-							p.mt-3.mb-4.pt-4.border-light-top Create a new password. Passwords must be at least 8 characters long and contain at least one letter, one number, and one special character.
-							div Current Password
-							input.mt-2.mb-3.px-2.py-2.form-control.bg-transparent(id="old-password" type="passsword" style="font-size: 12px; box-shadow: none")
-							div New Password
-							input.mt-2.mb-3.px-2.py-2.form-control.bg-transparent(id="new-password" type="passsword" style="font-size: 12px; box-shadow: none")
-							div Confirm New Password
-							input.mt-2.mb-3.px-2.py-2.form-control.bg-transparent(id="confirm-new-password" type="passsword" style="font-size: 12px; box-shadow: none")
-							button.btn.text-white.fw-bold.rounded.my-2(id="btn-save-new-password" tabindex=0 style="background: #0d6efd; padding: 9px 18px") Save Password
+		script(data-search-pseudo-elements src="https://kit.fontawesome.com/f737751420.js" crossorigin="anonymous")
+		.modal
+			.modal-panel(style="max-width: 400px")
+				.float-end
+					.btn-close-modal &times;
+				.modal-panel-header Update Your Profile Info
+				.modal-panel-content 
+		.modal
+			.modal-panel(style="max-width: 400px")
+				.float-end
+					.btn-close-modal &times;
+				.modal-panel-header Change Your Password
+				.modal-panel-content 
+					.mb-4 Create a new password. Passwords must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character.
+					div Current Password
+					input.mt-2.mb-3.px-2.py-2.form-control.change-password(id="old-password" type="password" maxlength="16" style="font-size: 12px" required="required")
+					div New Password
+					input.password-check-failure.mt-2.mb-3.px-2.py-2.form-control.change-password(id="new-password" type="password" maxlength="16" style="font-size: 12px" required="required")
+					div Confirm New Password
+					.change-password
+						input.password-check-failure.mt-2.mb-3.px-2.py-2.form-control(id="confirm-new-password" type="password" maxlength="16" style="font-size: 12px" required="required")
+					.text-end
+						button.btn.text-white.fw-bold.rounded.my-2(id="btn-change-password" tabindex=0 style="background: #0d6efd; padding: 9px 18px") Save Password
+		.modal
+			.modal-panel(style="max-width: 400px")
+				.float-end
+					.btn-close-modal &times;
+				.modal-panel-header Clear Social Media Links
+				.modal-panel-content 
 		include include/nav-top.pug
 		.container-fluid.m-0.m-sm-inherit
 			.row
@@ -59,7 +71,7 @@ block content
 										input.form-control(type="text" value=`${user.email}` style="font-size: 12px")
 								.row.py-2.d-flex.align-items-center.justify-content-start
 									.col-12 
-										button.btn.my-3.text-white.fw-bold.rounded(id="btn-update-profile" tabindex=0 style="background: #0d6efd; padding: 9px 18px") Update Profile Info
+										button.btn.my-3.text-white.fw-bold.rounded.modal-trigger(id="btn-update-profile" tabindex=0 style="background: #0d6efd; padding: 9px 18px") Update Profile Info
 								.row.py-2.d-flex.align-items-center.justify-content-start
 									.col-12.py-2
 										h5.d-flex.align-items-center
@@ -71,7 +83,7 @@ block content
 										input.form-control(type="password" value=`********` style="font-size: 12px; color: var(--color-text)" disabled)
 								.row.py-2.d-flex.align-items-center.justify-content-start
 									.col-12 
-										button.btn.my-3.text-white.fw-bold.rounded(id="btn-change-password" tabindex=0 style="background: #0d6efd; padding: 9px 18px") Change Password
+										button.btn.my-3.text-white.fw-bold.rounded.modal-trigger(tabindex=0 style="background: #0d6efd; padding: 9px 18px") Change Password
 								.row.py-2.d-flex.align-items-center.justify-content-start
 									.col-12.py-2
 										h5.d-flex.align-items-center
@@ -95,4 +107,4 @@ block content
 										input.form-control(type="text" value=`${user.facebook_img}` style="font-size: 12px; color: var(--color-text)" disabled)
 								.row.py-2.d-flex.align-items-center.justify-content-start
 									.col-12 
-										button.btn.my-3.text-white.fw-bold.rounded(id="btn-clear-social" tabindex=0 style="background: #0d6efd; padding: 9px 18px") Clear Social Media Data
+										button.btn.my-3.text-white.fw-bold.rounded.modal-trigger(id="btn-clear-social" tabindex=0 style="background: #0d6efd; padding: 9px 18px") Clear Social Media Data

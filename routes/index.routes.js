@@ -6,10 +6,16 @@
 const express = require('express')
 const router = express.Router()
 const connectEnsureLogin = require("connect-ensure-login")
+const mailController = require('../controllers/mail.controller');
 
 // Login route ...
 router.get("/login/", (req, res) => {
   res.render( "auth", { title: "Social.Auth" } )
+})
+
+// Reset password route ...
+router.get("/reset/", (req, res) => {
+  mailController.sendMail()
 })
 
 // Index route ...
@@ -34,6 +40,7 @@ router.get("/admin/", connectEnsureLogin.ensureLoggedIn("/login/"), (req, res) =
   } else{
     res.redirect("/login/")  
   }
+
 })
 
 // Error route ...
