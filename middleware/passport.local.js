@@ -21,18 +21,22 @@ passport.use(new LocalStrategy({ usernameField: "email", passwordField: "passwor
             if (user[0].user_active === 0) {
               return done("Account locked or disabled. Please contact support.", user);
             } else {
-              const passwordVerified = await argon2.verify(user[0].password, password);
-              if (passwordVerified === true) {
-                //console.log("Password verified.") // For debugging ...
-                db.query("update user set provider = 'Local'")
-                return done(null, user)
+              if (user[0].password !== null) {
+                const passwordVerified = await argon2.verify(user[0].password, password);
+                if (passwordVerified === true) {
+                  //console.log("Password verified.") // For debugging ...
+                  db.query("update user set provider = 'Local'")
+                  return done(null, user)
+                } else {
+                  return done("Email address and password combination not found.", false);
+                }
               } else {
-                return done("Email address and password combination not found.", user);
+                return done("Email address and password combination not found.", false);
               }
             }
           } catch (err) {
             console.log(err)
-            return done("Error.", user);
+            return done("Server error.", user);
           }
         }
       }
