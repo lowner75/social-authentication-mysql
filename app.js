@@ -1,6 +1,6 @@
 /**
 * A simple Node.js / Express application using social authentication.
-* Authentication is Passport JS based utilising Google OAuth2, Facebook, 
+* Authentication is Passport JS based using Google OAuth2, Facebook, 
 * and local strategies, and uses a MySQL database to store user data upon
 * signing up / logging in. The app also allows sign up with email.
 */
@@ -48,11 +48,12 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 // CORS settings ...
-const corsOptions = { origin: "http://localhost:3000", credentials: true }
+let port = process.env.PORT || 3000
+const corsOptions = { origin: `http://localhost:${port}`, credentials: true }
 app.use(cors(corsOptions))
 
 // Initialise Express server ...
-app.listen(process.env.PORT , () => console.log(`\nApp listening on port ${process.env.PORT}...` ))
+app.listen(port, () => console.log(`\nApp listening on port ${port}...` ))
 
 // In production serve secure cookies only ...
 if (app.get("env") === "production") {
@@ -62,10 +63,12 @@ if (app.get("env") === "production") {
 // Router locations ...
 const indexRouter = require('./routes/index.routes');
 const authRouter = require("./routes/auth.routes");
+const apiRouter = require("./routes/api.routes");
 
 // Routes ...
 app.use('/', indexRouter);
 app.use('/auth/', authRouter);
+app.use('/api/', apiRouter);
 
 // Logout route ...
 app.all("/logout/", (req, res, next) => {
