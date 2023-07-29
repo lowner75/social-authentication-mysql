@@ -31,9 +31,6 @@ router.get("/profile/", connectEnsureLogin.ensureLoggedIn("/login/"), (req, res)
 // Admin route ...
 router.get("/admin/", connectEnsureLogin.ensureLoggedIn("/login/"), (req, res) => {
 
-  // Required as req.user is returned as an array with some strategies ...
-  if (req.user[0]) req.user = req.user[0]
-
   // Check user has admin privileges ...
   if (req.user.user_admin == 1) {
     res.render( "admin", { title: "Social.Auth", user: req.user } )
