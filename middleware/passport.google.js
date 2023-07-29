@@ -26,6 +26,7 @@ passport.use(new GoogleStrategy({
         }
         if (!err && user.length != 0) {
           // If user exists ...
+          if (user[0]) user = user[0] // Prevents user object being saved as array ...
           db.query("update user set provider = 'Google'")
           return done(null, user)
         } else {
@@ -34,6 +35,7 @@ passport.use(new GoogleStrategy({
           db.query(
             "select * from user where email = ? ", [profile.emails[0].value],
             (err, user) => {
+              if (user[0]) user = user[0] // Prevents user object being saved as array ...
               if (!err && user.length != 0) {
                 // If email is already registered, update user account with latest Google data: google_id, google_img ...
                 db.query("update user set google_id = ?, google_img = ?, provider = 'Google'", [profile.id, profile.photos[0].value])

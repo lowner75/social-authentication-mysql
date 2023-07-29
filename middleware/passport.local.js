@@ -17,12 +17,13 @@ passport.use(new LocalStrategy({ usernameField: "email", passwordField: "passwor
         if (!user) {
           return done("Email address and password combination not found.", false);
         } else {
+          if (user[0]) user = user[0]
           try {
-            if (user[0].user_active === 0) {
+            if (user.user_active === 0) {
               return done("Account locked or disabled. Please contact support.", user);
             } else {
-              if (user[0].password !== null) {
-                const passwordVerified = await argon2.verify(user[0].password, password);
+              if (user.password !== null) {
+                const passwordVerified = await argon2.verify(user.password, password);
                 if (passwordVerified === true) {
                   //console.log("Password verified.") // For debugging ...
                   db.query("update user set provider = 'Local'")
