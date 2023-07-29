@@ -6,10 +6,17 @@
 const nodemailer = require("nodemailer")
 
 let transporter = nodemailer.createTransport({
-	host: 'localhost',
-	port: 25,
-	tls: { rejectUnauthorized: false },
-});
+	host: process.env.MAIL_HOST,
+	port: process.env.MAIL_PORT,
+	secure: false,
+	auth: {
+		user: process.env.MAIL_USER,
+		pass: process.env.MAIL_PASS,
+	},
+	tls: {
+		rejectUnauthorized: false
+	}
+})
 
 var message = {
 	from:     'noreply@social.auth',
