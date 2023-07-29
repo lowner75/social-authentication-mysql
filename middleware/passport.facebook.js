@@ -25,7 +25,7 @@ passport.use(new FacebookStrategy({
           done(err, false)
         }
         if (!err && user.length != 0) {
-          // If user exists ...
+          // If facebook id already exists ...
           if (user[0]) user = user[0] // Prevents user object being saved as array ...
           db.query("update user set provider = 'Facebook'")
           return done(null, user)
@@ -38,12 +38,13 @@ passport.use(new FacebookStrategy({
               if (user[0]) user = user[0] // Prevents user object being saved as array ...
               if (!err && user.length != 0) {
                 // If email is already registered, update user account with latest Facebook data: facebook_id, facebook_img ...
-                db.query("update user set facebook_id = ?, facebook_img = ?, provider = 'Facebook'", [profile.id, profile.photos[0].value])
-                return done(null, user)
+                db.query("update user set facebook_id = ?, facebook_img = ?, provider = 'Facebook' where email = ?", [profile.id, profile.photos[0].value, profile.emails[0].value], (err, user) => {
+                  db.query("select * from user where facebook_id = ?", [profile.id],
+                    (err, user) => { if (err) console.log(err); return done(null, user) })
+                })
               } else {
                 // If user doesn't have an existing account, add them to the database ...
-                db.query(
-                  "insert into user set fname = ?, lname = ?, facebook_id = ?, facebook_img = ?, email = ?, provider = 'Facebook', user_active = 1",
+                db.query("insert into user set fname = ?, lname = ?, facebook_id = ?, facebook_img = ?, email = ?, provider = 'Facebook', user_active = 1",
                   [profile.name.givenName, profile.name.familyName, profile.id, profile.photos[0].value, profile.emails[0].value],
                   (err, user) => {
                     if (err) {

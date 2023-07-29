@@ -25,7 +25,7 @@ passport.use(new GoogleStrategy({
           done(err, false)
         }
         if (!err && user.length != 0) {
-          // If user exists ...
+          // If google id already exists ...
           if (user[0]) user = user[0] // Prevents user object being saved as array ...
           db.query("update user set provider = 'Google'")
           return done(null, user)
@@ -38,8 +38,10 @@ passport.use(new GoogleStrategy({
               if (user[0]) user = user[0] // Prevents user object being saved as array ...
               if (!err && user.length != 0) {
                 // If email is already registered, update user account with latest Google data: google_id, google_img ...
-                db.query("update user set google_id = ?, google_img = ?, provider = 'Google'", [profile.id, profile.photos[0].value])
-                return done(null, user)
+                db.query("update user set google_id = ?, google_img = ?, provider = 'Google' where email = ?", [profile.id, profile.photos[0].value, profile.emails[0].value], (err, res) => {
+                  db.query("select * from user where google_id = ?", [profile.id],
+                    (err, user) => { if (err) console.log(err); return done(null, user) })
+                })
               } else {
                 // If user doesn't have an existing account, add them to the database ...
                 db.query("insert into user set fname = ?, lname = ?, google_id = ?, google_img = ?, email = ?, provider = 'Google', user_active = 1",
@@ -49,12 +51,8 @@ passport.use(new GoogleStrategy({
                       console.log(err)
                       return done(err, false);
                     } else {
-                      db.query(
-                        "select * from user where google_id = ?", [profile.id],
-                        (err, user) => {
-                          if (err) console.log(err)
-                          return done(null, user);
-                      })
+                      db.query("select * from user where google_id = ?", [profile.id],
+                        (err, user) => { if (err) console.log(err); return done(null, user) })
                     }
                   }
                 )
