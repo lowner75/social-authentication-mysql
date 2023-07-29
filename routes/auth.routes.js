@@ -6,8 +6,8 @@
 const express = require('express')
 const router = express.Router()
 const passport = require("passport")
-const db = require("../config/database")
 const argon2 = require("argon2");
+const db = require("../config/database")
 
 // Sign-up auth route ...
 router.post('/sign-up/', 
@@ -18,7 +18,7 @@ router.post('/sign-up/',
 		try {
 			const hash = await argon2.hash(password, {
 				type: argon2.argon2id,
-				memoryCost: process.env.ARGON2_MEMORY_COST,
+				memoryCost: 2 ** 16,
 				hashLength: process.env.ARGON2_HASHLENGTH,
 			});
 			password = hash
