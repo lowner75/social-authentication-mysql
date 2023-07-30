@@ -8,6 +8,19 @@ const router = express.Router()
 const argon2 = require("argon2")
 const db = require("../config/database")
 
+// Update profile API ...
+router.post("/update-profile/", async (req, res) => {
+
+  // Check user is logged in ...
+  if (req.isAuthenticated()) {
+    db.query("update user set google_id = null, google_img = null, facebook_id = null, facebook_img = null where id = ?", [req.user.id])
+    return res.status(200).send({ success: true, message: "Profile successfully updated." })
+  } else {
+    return res.status(401).send({ success: false, message: "Error: You are currently logged out. Please log back in to make changes." })
+  }
+
+})
+
 // Clear social media links API ...
 router.post("/clear-social/", async (req, res) => {
 
