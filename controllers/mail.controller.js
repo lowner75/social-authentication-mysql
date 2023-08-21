@@ -19,8 +19,8 @@ let transporter = nodemailer.createTransport({
 })
 
 var message = {
-	from:     'noreply@social.auth',
-	to:       'bryan.lown@berkeleydesigns.co.uk',
+	from:     'hello@bryanlown.com',
+	to:       'hello@bryanlown.com',
 	subject:  'Test',
 	text:     'This is a test email.',
 	html:     '<p>This is a test email</p>'
