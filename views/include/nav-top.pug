@@ -4,17 +4,19 @@
     img.shadow-sm.rounded(src="/img/theme.png" style="width: 24px; height: 24px")
     .chevron-down(style="margin: 5px 0 0 8px")
     .user-dropdown-menu.position-absolute.shadow-sm
-      .user-dropdown-menu-inner.px-1
+      .user-dropdown-menu-inner.px-1.shadow-sm
         .my-1.px-2.py-2.theme-link(id="theme-os" onclick='changeTheme("os")')
           .fa-solid.fa-circle-half-stroke(style="margin-right: 11px")
           span Operating System
         .my-1.px-2.py-2.theme-link(id="theme-dark" onclick='changeTheme("dark")')
           .fa-regular.fa-moon(style="margin-left: 2px; margin-right: 13px")
           span Dark Theme
-        .my-1.px-2.py-2.theme-link(id="theme-light" onclick='changeTheme("light")')
+        .my-1.px-2.py-2.theme-link(id="theme-light" onclick='changeTheme("light")').shadow-sm
           .fa-regular.fa-sun(style="margin-right: 12px")
           span Light Theme
   .logo.d-flex.align-items-center(style="margin-top: 2px")
     a(href="/" style="margin-right: 12px")
       img.logo-img.d-block(src="/img/logo.png" style="width: 18px")
-    a(href="/") Social.Auth
+    a(href="/")
+      span(style="font-weight: 500") Social
+      span(style="font-weight: 300") Auth

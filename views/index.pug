@@ -2,22 +2,34 @@ extends layout
 
 block variables
 
-	- if (user[0]) user = user[0]
+  - if (user[0]) user = user[0]
 
 block content
 
-	body(style="overflow-y: scroll")
-		include include/nav-top.pug
-		.container-fluid.m-0.m-sm-inherit
-			.row
-				.col-0.col-lg-3
-					include include/nav-side
-				.col.ms-0.ms-lg-3.content
-					.d-flex.align-items-center.justify-content-center.rounded(style="height: 350px; background: #4158D0; background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%)")
-						.d-flex.align-items-center.justify-content-center
-							img(src="/img/logo.png" style="width: 30px; margin-top: -8px; margin-right: 12px")
-							h1.text-white Social.Auth
-					.px-2.py-5.p-sm-5.text-center.d-flex.align-items-center.justify-content-center
-						.px-0.px-sm-5
-							h3.pb-4 A simple Node.js / Express application for social authentication.
-							div(style="font-size: 20px") Authentication is Passport JS based using Google OAuth2, Facebook, and local strategies, and uses a MySQL database to store user data upon signing up / logging in. The app also allows users to sign up with email.
+  body(style="overflow-y: scroll")
+    include include/nav-top.pug
+    .container-fluid.m-0.m-sm-inherit
+      .row
+        .col-0.col-lg-3
+          include include/nav-side
+        .col.ms-0.ms-lg-3.content
+          .flex-center.rounded.mb-4(style="height: 350px; background: #4158D0; background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%)")
+            .flex-center
+              img(src="/img/logo.png" style="height: 30px; margin-top: -10px; margin-right: 12px")
+              h1.text-white
+                span(style="font-weight: 500") Social
+                span(style="font-weight: 300") Auth
+          .px-2.py-5.px-sm-5.pb-sm-3.text-center.flex-center
+            .px-0.px-sm-5
+              h3.pb-4 A simple Node.js / Express application for social authentication.
+              div(style="font-size: 20px") Authentication is Passport JS based using Google OAuth2, Facebook, and local strategies, and uses a MySQL database to store user data upon signing up / logging in. The app also allows users to sign up with email.
+          .px-2.py-5.px-sm-0.pb-sm-3.text-center.flex-center
+            .row.w-100
+              .col-12
+                .mb-2 HIGHLIGHTS
+                h3.pb-5 Built-In Features
+                .row.pt-3.gy-2.gy-lg-auto
+                  .col-12.col-lg-6
+                    .p-3.rounded.text-white(style="background: var(--accent-color)") FEATURE 1
+                  .col-12.col-lg-6
+                    .p-3.rounded.text-white(style="background: var(--accent-color)") FEATURE 2
