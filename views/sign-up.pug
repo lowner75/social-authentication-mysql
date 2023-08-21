@@ -1,0 +1,67 @@
+doctype html
+html(lang="en")
+  head
+    title=title
+    include include/head.pug 
+  body(style="overflow: hidden")
+    script(defer src="/node_modules/@fortawesome/fontawesome-free/js/all.js")
+    .modal.modal-0
+      .modal-panel(style="max-width: 400px")
+        .float-end
+          .btn-close-modal &times;
+        .modal-panel-header SocialAuth Error
+        .modal-panel-content 
+    .position-absolute.flex-center(id="alert-box-bg" style="height: 100vh; width: 100vw; max-width: 90%; visibility: hidden; opacity: 0; background: rgba(0,0,0,0.5); z-index: 1500")
+      .flex-center.rounded(id="alert-box" style="width: 380px; max-width: 100%")
+        .d-inline.text-start.w-100.rounded(style="background: #202124; border-left: solid 6px rgba(255,255,255,0.3)")
+          .row.m-0.p-0.text-white
+            .col-11.px-4.py-4
+              .me-4(id="alert-box-msg" style="width: 100%; line-height: 1.6")
+            .col-1.d-flex.align-items-start.justify-content-center.py-2
+              .btn-close-alert-box.px-3(style="cursor: pointer")
+                .fa-solid.fa-xmark(style="font-size: 20px")
+    .auth-container.flex-center
+      .container.p-0
+        .row.p-0.m-0.mx-lg-auto.shadow
+          .col-12.col-lg-5.p-0
+            .auth.flex-center.py-5.px-4.px-lg-5
+              .px-1.w-100
+                .px-1
+                  img.logo-img.d-inline(src="/img/logo.png" style="height: 15px; margin-right: 7px; margin-bottom: 8px")
+                  .d-inline(style="color: var(--color-heading); font-size: 18px; font-weight: 500")
+                    span Social
+                    span(style="font-weight: 300") Auth
+                  h3.pt-4 Sign Up
+                  .p-0.pb-4 Please fill in the following:
+                .position-relative.mt-2
+                  .position-absolute(style="top: 11px; left: 12px")
+                    .fa-solid.fa-user.fname-user-icon
+                  input.form-control.auth-input.user-input(id="fname" type="text" placeholder="First Name" autocomplete="new-password")
+                .position-relative.mt-2
+                  .position-absolute(style="top: 11px; left: 12px")
+                    .fa-solid.fa-user.lname-user-icon
+                  input.form-control.auth-input.user-input(id="lname" type="text" placeholder="Last Name" autocomplete="new-password")
+                .position-relative.mt-2
+                  .position-absolute(style="top: 11px; left: 12px")
+                    .fa-solid.fa-envelope
+                  input.form-control.auth-input.email-input(id="signup-email" type="text" placeholder="Your Email" autocomplete="new-password")
+                .position-relative.mt-2
+                  .position-absolute(style="top: 11px; left: 12px")
+                    .fa-solid.fa-lock
+                  .position-absolute.text-center.password-toggler.rounded-circle(style="top: 10px; right: 10px; height: 21px; width: 21px")
+                    .eye.fa-solid.fa-eye-slash(id="eye" style="margin-top: 4px; font-size: 12px; cursor: pointer")
+                  input.form-control.auth-input.password-input.password(id="signup-password" type="password" placeholder="Your Password" autocomplete="new-password")
+                .text-center.mt-3
+                  button.btn.btn-main.w-100.rounded(id="btn-sign-up" tabindex=0 style="padding: 9px") Create Account
+                  .decorated.text-center.mt-4.mb-3
+                    span or
+                  a.w-100.rounded.text-decoration-none(href="/login/" tabindex=0 style="padding: 9px") Return to Login Screen
+          .auth-splash.col-12.d-none.col-lg-7.d-lg-block
+            .flex-center.p-5.h-100.text-white
+              .d-block
+                h3.text-white Welcome to 
+                  span(style="font-weight: 500") Social
+                  span(style="font-weight: 300") Auth
+                .mt-3.text-white(style="font-size: 16px") A simple Node.js / Express application for social authentication using Passport JS and MySQL.
+    include include/footer.pug
+    include include/scripts.pug
