@@ -75,6 +75,7 @@ router.post('/sign-up/',
 // Passport local auth route ...
 router.post('/', 
 	(req, res) => {
+		
     //console.log(req.body) // For debugging ...
 		passport.authenticate('local', (err, user, info) => {
 			if (err || !user) {
@@ -106,7 +107,7 @@ router.get("/google/callback",
   (req, res) => {
 
 		// On success ...
-		res.redirect("/profile/")
+		res.redirect("/")
 
 	}
 )
@@ -122,7 +123,7 @@ router.get('/facebook/callback',
 	(req, res) => {
 
 		// On success ...
-		res.redirect("/profile/")
+		res.redirect("/")
 
 	}
 )

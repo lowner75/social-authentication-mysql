@@ -10,7 +10,12 @@ const mailController = require('../controllers/mail.controller');
 
 // Login route ...
 router.get("/login/", (req, res) => {
-  res.render( "auth", { title: "Social.Auth" } )
+  res.render( "auth", { title: "SocialAuth" } )
+})
+
+// Sign-up route ...
+router.get("/sign-up/", (req, res) => {
+  res.render( "sign-up", { title: "SocialAuth" } )
 })
 
 // Reset password route ...
@@ -20,12 +25,12 @@ router.get("/reset/", (req, res) => {
 
 // Index route ...
 router.get("/", connectEnsureLogin.ensureLoggedIn("/login/"), (req, res) => {
-  res.render( "index", { title: "Social.Auth", user: req.user } )
+  res.render( "index", { title: "SocialAuth", user: req.user } )
 })  
 
 // Profile route ...
 router.get("/profile/", connectEnsureLogin.ensureLoggedIn("/login/"), (req, res) => {
-  res.render( "profile", { title: "Social.Auth", user: req.user } )
+  res.render( "profile", { title: "SocialAuth", user: req.user } )
 })
 
 // Admin route ...
@@ -33,7 +38,7 @@ router.get("/admin/", connectEnsureLogin.ensureLoggedIn("/login/"), (req, res) =
 
   // Check user has admin privileges ...
   if (req.user.user_admin == 1) {
-    res.render( "admin", { title: "Social.Auth", user: req.user } )
+    res.render( "admin", { title: "SocialAuth", user: req.user } )
   } else{
     res.redirect("/login/")  
   }
