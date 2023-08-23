@@ -1,6 +1,6 @@
 {
-    "name": "Social.Auth",
-    "short_name": "Social.Auth",
+    "name": "SocialAuth",
+    "short_name": "SocialAuth",
     "icons": [
         {
             "src": "/img/favicon/android-chrome-192x192.png",
