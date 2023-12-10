@@ -2,154 +2,155 @@ extends layout
 
 block variables
 
-	- if (user[0]) user = user[0]
+  - if (user[0]) user = user[0]
 
 block content
 
-	body(style="overflow-y: scroll")
-		script(data-search-pseudo-elements src="https://kit.fontawesome.com/f737751420.js" crossorigin="anonymous")
-		.modal(id="modal-update-profile")
-			.modal-panel(style="max-width: 400px")
-				.float-end
-					.btn-close-modal &times;
-				.modal-panel-header Update Your Profile Info
-				.modal-panel-content 
-					.text-end
-						button.btn.btn-main.text-white.fw-bold.rounded.my-2(id="btn-update-profile" tabindex=0 style="padding: 7px 14px") Update Profile
-		.modal(id="modal-change-password")
-			.modal-panel(style="max-width: 400px")
-				.float-end
-					.btn-close-modal &times;
-				.modal-panel-header Change Your Password
-				.modal-panel-content 
-					.mb-3 Create a new password. Passwords must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character.
-					span Current Password
-					input.mt-2.mb-3.px-2.py-2.form-control(id="old-password" type="password" maxlength="16" style="font-size: 12px" required="required")
-					span New Password
-					input.password-check.password-check-failure.mt-2.mb-3.px-2.py-2.form-control(id="new-password" type="password" maxlength="16" style="font-size: 12px" required="required")
-					span Confirm New Password
-					input.password-match.password-check-failure.mt-2.mb-3.px-2.py-2.form-control(id="confirm-new-password" type="password" maxlength="16" style="font-size: 12px" required="required")
-					.text-end
-						button.btn.btn-main.text-white.fw-bold.rounded.my-2(id="btn-change-password" tabindex=0 style="padding: 7px 14px") Change Password
-		.modal(id="modal-clear-social")
-			.modal-panel(style="max-width: 400px")
-				.float-end
-					.btn-close-modal &times;
-				.modal-panel-header Clear Social Media Links
-				.modal-panel-content Are you sure you want to clear your social media links? This will permanently delete them until you login using one again.
-					.text-end.mt-4
-						button.btn.btn-main.text-white.fw-bold.rounded.me-0(id="btn-clear-social" tabindex=0 style="padding: 9px 18px") Confirm
-		script.
-			const closeModal = (id) => { document.getElementById(id).classList.remove('show-modal') }
-		.modal.no-trigger(id="modal-profile-photo")
-			.modal-panel(style="max-width: 400px")
-				.float-end
-					.btn-close-modal(type="button" onclick="closeModal('modal-profile-photo')") &times;
-				.modal-panel-header SocialAuth
-				.modal-panel-content.pb-2
-					canvas(id="canvas" height="400" width="400" style="max-width: 100%; background-color: var(--bg-panel); cursor: pointer") This browser doesnt support canvas technology, try another or update.
-					.text-end.mt-3
-						button.btn.btn-main.text-white.fw-bold.rounded.me-0(id="btn-save-profile-photo" tabindex=0 style="padding: 9px 18px") Save Profile Photo
-		.modal.no-trigger(id="modal-alert")
-			.modal-panel(style="max-width: 400px")
-				.float-end
-					.btn-close-modal(type="button" onclick="closeModal('modal-alert')") &times;
-				.modal-panel-header SocialAuth
-				.modal-panel-content.pb-2 
-		include include/nav-top.pug
-		.container-fluid.m-0.m-sm-inherit
-			.row
-				.col-0.col-lg-3
-					include include/nav-side
-				.col.ms-0.ms-lg-3.content
-					.main-bg-1.d-flex.flex-column.flex-sm-row.align-items-center.justify-content-center.justify-content-sm-start.rounded
-						.position-relative.ms-sm-5.flex-center.rounded.shadow(style="height: 200px; width: 200px; background-color: #21D4FD;background-image: linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);")
-							.bg-white(style="width: 100px; height: 100px; -webkit-mask: url(/img/icon-user.svg) no-repeat center; mask: url(/img/icon-user.svg) no-repeat center")
-							.position-absolute.profile-photo-dropdown.rounded-circle.flex-center.shadow-sm
-								.fa-solid.fa-pencil(style="font-size: 12px; color: #6e53c5")
-								.position-absolute.profile-photo-dropdown-menu.d-flex.align-items-end.rounded
-									.profile-photo-dropdown-menu-inner.rounded.w-100.shadow-sm
-										.profile-photo-dropdown-link.rounded-top.pt-2.pb-2(style="padding: 0 12px; border-bottom: solid 1px var(--mid-tone)")
-											input(id="profile-photo-file-selector" type="file" style="display: none")
-											div(id="btn-upload-profile-photo")
-												.float-end
-													.fa-solid.fa-upload
-												span Upload Photo
-										.profile-photo-dropdown-link.rounded-bottom.pt-2.pb-2(style="padding: 0 12px")
-											div(id="btn-delete-profile-photo")
-												.float-end
-													.fa-solid.fa-trash
-												span Delete Existing
-						.ms-0.ms-sm-5.pt-4.pt-sm-0
-							.flex-center
-								.bg-white.me-2(style="width: 32px; height: 32px; -webkit-mask: url(/img/icon-user.svg) no-repeat center; mask: url(/img/icon-user.svg) no-repeat center; margin-top: -8px")
-								h1.text-white Your Profile
-					.row.m-0.p-0.mt-4.pt-3
-						.col-12.col-lg-8.m-sm-0.p-sm-0.pb-4
-							h4.d-flex.align-items-center
-								img(src="/img/icon-user.svg" style="width: 20px; margin-right: 10px")
-								span Profile Information
-							.py-3
-								.row.py-2.d-flex.align-items-center.justify-content-start
-									.col-12.col-sm-3.fw-bold.mb-2.mb-sm-0 First Name:
-									.col-12.col-sm-9 
-										input.form-control(type="text" data-first-name=`${user.fname}` value=`${user.fname}` style="font-size: 12px")
-								.row.py-2.d-flex.align-items-center.justify-content-start
-									.col-12.col-sm-3.fw-bold.mb-2.mb-sm-0 Last Name:
-									.col-12.col-sm-9
-										input.form-control(type="text" data-last-name=`${user.lname}` value=`${user.lname}` style="font-size: 12px")
-								.row.py-2.d-flex.align-items-center.justify-content-start
-									.col-12.col-sm-3.fw-bold.mb-2.mb-sm-0 Email Address:
-									.col-12.col-sm-9 
-										input.form-control(type="text" date-email=`${user.email}` value=`${user.email}` style="font-size: 12px")
-								.row.py-2.d-flex.align-items-center.justify-content-start
-									.col-12 
-										button.btn.btn-main.my-3.text-white.fw-bold.rounded.modal-trigger(id="btn-update-profile" tabindex=0 style="padding: 9px 18px") Update Profile Info
-								.row.py-2.d-flex.align-items-center.justify-content-start
-									.col-12.py-2
-										h5.d-flex.align-items-center
-											img(src="/img/icon-lock.svg" style="width: 16px; margin-right: 10px")
-											span Password
-								.row.py-2.d-flex.align-items-center.justify-content-start
-									.col-12.col-sm-3.fw-bold.mb-2.mb-sm-0 Password:
-									.col-12.col-sm-9 
-										input.form-control(type="password" value=`********` style="font-size: 12px; color: var(--color-text)" disabled)
-								.row.py-2.d-flex.align-items-center.justify-content-start
-									.col-12 
-										button.btn.btn-main.my-3.text-white.fw-bold.rounded.modal-trigger(tabindex=0 style="padding: 9px 18px") Change Password
-								.row.py-2.d-flex.align-items-center.justify-content-start
-									.col-12.py-2
-										h5.d-flex.align-items-center
-											img(src="/img/icon-social.svg" style="width: 16px; margin-right: 10px")
-											span Social Media Data
-								.row.py-2.d-flex.align-items-center.justify-content-start
-									.col-12.col-sm-3.fw-bold.mb-2.mb-sm-0 Google ID:
-									.col-12.col-sm-9 
-										if user.google_id === null
-											input.form-control(type="text" value=`` style="font-size: 12px; color: var(--color-text)" disabled)
-										else
-											input.form-control(type="text" value=`${user.google_id}` style="font-size: 12px; color: var(--color-text)" disabled)
-								.row.py-2.d-flex.align-items-center.justify-content-start
-									.col-12.col-sm-3.fw-bold.mb-2.mb-sm-0 Google Image Link:
-									.col-12.col-sm-9 
-										if user.google_img === null
-											input.form-control(type="text" value=`` style="font-size: 12px; color: var(--color-text)" disabled)
-										else
-											input.form-control(type="text" value=`${user.google_img}` style="font-size: 12px; color: var(--color-text)" disabled)
-								.row.py-2.d-flex.align-items-center.justify-content-start
-									.col-12.col-sm-3.fw-bold.mb-2.mb-sm-0 Facebook ID:
-									.col-12.col-sm-9 
-										if user.facebook_id === null
-											input.form-control(type="text" value=`` style="font-size: 12px; color: var(--color-text)" disabled)
-										else
-											input.form-control(type="text" value=`${user.facebook_id}` style="font-size: 12px; color: var(--color-text)" disabled)
-								.row.py-2.d-flex.align-items-center.justify-content-start
-									.col-12.col-sm-3.fw-bold.mb-2.mb-sm-0 Facebook Image Link:
-									.col-12.col-sm-9 
-										if user.facebook_img === null
-											input.form-control(type="text" value=`` style="font-size: 12px; color: var(--color-text)" disabled)
-										else
-											input.form-control(type="text" value=`${user.facebook_img}` style="font-size: 12px; color: var(--color-text)" disabled)
-								.row.py-2.d-flex.align-items-center.justify-content-start
-									.col-12 
-										button.btn.btn-main.my-3.text-white.fw-bold.rounded.modal-trigger(id="btn-clear-social" tabindex=0 style="padding: 9px 18px") Clear Social Media Links
+  body(style="overflow-y: scroll")
+    script(data-search-pseudo-elements src="https://kit.fontawesome.com/f737751420.js" crossorigin="anonymous")
+    script.
+      const closeModal = (id) => { document.getElementById(id).classList.remove('show-modal') }
+    .modal(id="modal-change-password")
+      .modal-panel(style="max-width: 400px")
+        .float-end
+          .btn-close-modal &times;
+        .modal-panel-header Change Your Password
+        .modal-panel-content 
+          .mb-3 Create a new password. Passwords must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character.
+          span Current Password
+          input.mt-2.mb-3.px-2.py-2.form-control(id="old-password" type="password" maxlength="16" style="font-size: 12px" required="required")
+          span New Password
+          input.password-check.password-check-failure.mt-2.mb-3.px-2.py-2.form-control(id="new-password" type="password" maxlength="16" style="font-size: 12px" required="required")
+          span Confirm New Password
+          input.password-match.password-check-failure.mt-2.px-2.py-2.form-control(id="confirm-new-password" type="password" maxlength="16" style="font-size: 12px" required="required")
+          .text-end
+            button.btn.btn-main.text-white.fw-bold.rounded.my-2(id="btn-change-password" tabindex=0 style="padding: 7px 14px") Change Password
+    .modal(id="modal-clear-social")
+      .modal-panel(style="max-width: 400px")
+        .float-end
+          .btn-close-modal &times;
+        .modal-panel-header Clear Social Media Links
+        .modal-panel-content Are you sure you want to clear your social media links? This will permanently delete them until you log in using one again.
+          .text-end
+            button.btn.btn-main.text-white.fw-bold.rounded.me-0(id="btn-clear-social" tabindex=0 style="padding: 9px 18px") Confirm
+    .modal.no-trigger(id="modal-update-profile")
+      .modal-panel(style="max-width: 400px")
+        .float-end
+          .btn-close-modal &times;
+        .modal-panel-header Update Your Profile Info
+        .modal-panel-content 
+          .update-profile-error
+          .text-end
+            button.btn.btn-main.text-white.fw-bold.rounded.my-2(id="btn-confirm-update-profile" onclick="closeModal('modal-update-profile')" tabindex=0 style="padding: 7px 14px") Confirm
+    .modal.no-trigger(id="modal-profile-photo")
+      .modal-panel(style="max-width: 400px")
+        .float-end
+          .btn-close-modal(type="button" onclick="closeModal('modal-profile-photo')") &times;
+        .modal-panel-header SocialAuth
+        .modal-panel-content.pb-2
+          canvas(id="canvas" height="400" width="400" style="max-width: 100%; background-color: var(--bg-panel); cursor: pointer") This browser doesnt support canvas technology, try another or update.
+          .text-end.mt-3
+            button.btn.btn-main.text-white.fw-bold.rounded.me-0(id="btn-save-profile-photo" tabindex=0 style="padding: 9px 18px") Save Profile Photo
+    .modal.no-trigger(id="modal-alert")
+      .modal-panel(style="max-width: 400px")
+        .float-end
+          .btn-close-modal(type="button" onclick="closeModal('modal-alert')") &times;
+        .modal-panel-header SocialAuth
+        .modal-panel-content.pb-2 
+    include include/nav-top.pug
+    .container-fluid.m-0.m-sm-inherit
+      .row
+        .col-0.col-lg-3
+          include include/nav-side
+        .col.ms-0.ms-lg-3.content
+          .main-bg-1.d-flex.flex-column.flex-sm-row.align-items-center.justify-content-center.justify-content-sm-start.rounded
+            .position-relative.ms-sm-5.flex-center.rounded.shadow(style="height: 200px; width: 200px; background-color: #21D4FD;background-image: linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);")
+              .bg-white(style="width: 100px; height: 100px; -webkit-mask: url(/img/icon-user.svg) no-repeat center; mask: url(/img/icon-user.svg) no-repeat center")
+              .position-absolute.profile-photo-dropdown.rounded-circle.flex-center.shadow-sm
+                .fa-solid.fa-pencil(style="font-size: 12px; color: #6e53c5")
+                .position-absolute.profile-photo-dropdown-menu.d-flex.align-items-end.rounded
+                  .profile-photo-dropdown-menu-inner.rounded.w-100.shadow-sm
+                    .profile-photo-dropdown-link.rounded-top.pt-2.pb-2(style="padding: 0 12px; border-bottom: solid 1px var(--mid-tone)")
+                      input(id="profile-photo-file-selector" type="file" style="display: none")
+                      div(id="btn-upload-profile-photo")
+                        .float-end
+                          .fa-solid.fa-upload
+                        span Upload Photo
+                    .profile-photo-dropdown-link.rounded-bottom.pt-2.pb-2(style="padding: 0 12px")
+                      div(id="btn-delete-profile-photo")
+                        .float-end
+                          .fa-solid.fa-trash
+                        span Delete Existing
+            .ms-0.ms-sm-5.pt-4.pt-sm-0
+              .flex-center
+                .bg-white.me-2(style="width: 32px; height: 32px; -webkit-mask: url(/img/icon-user.svg) no-repeat center; mask: url(/img/icon-user.svg) no-repeat center; margin-top: -8px")
+                h1.text-white Your Profile
+          .row.m-0.p-0.mt-4.pt-3
+            .col-12.col-lg-8.m-sm-0.p-sm-0.pb-4
+              h4.d-flex.align-items-center
+                img(src="/img/icon-user.svg" style="width: 20px; margin-right: 10px")
+                span Profile Information
+              .py-3
+                .row.py-2.d-flex.align-items-center.justify-content-start
+                  .col-12.col-sm-3.fw-bold.mb-2.mb-sm-0 First Name:
+                  .col-12.col-sm-9 
+                    input.form-control(id="fname" type="text" data-first-name=`${user.fname}` value=`${user.fname}` style="font-size: 12px")
+                .row.py-2.d-flex.align-items-center.justify-content-start
+                  .col-12.col-sm-3.fw-bold.mb-2.mb-sm-0 Last Name:
+                  .col-12.col-sm-9
+                    input.form-control(id="lname" type="text" data-last-name=`${user.lname}` value=`${user.lname}` style="font-size: 12px")
+                .row.py-2.d-flex.align-items-center.justify-content-start
+                  .col-12.col-sm-3.fw-bold.mb-2.mb-sm-0 Email Address:
+                  .col-12.col-sm-9 
+                    input.form-control(id="email" type="text" date-email=`${user.email}` value=`${user.email}` style="font-size: 12px")
+                .row.py-2.d-flex.align-items-center.justify-content-start
+                  .col-12
+                    button.btn.btn-main.my-3.text-white.fw-bold.rounded(id="btn-update-profile" tabindex=0 style="padding: 9px 18px") Update Profile Info
+                .row.py-2.d-flex.align-items-center.justify-content-start
+                  .col-12.py-2
+                    h5.d-flex.align-items-center
+                      img(src="/img/icon-lock.svg" style="width: 16px; margin-right: 10px")
+                      span Password
+                .row.py-2.d-flex.align-items-center.justify-content-start
+                  .col-12.col-sm-3.fw-bold.mb-2.mb-sm-0 Password:
+                  .col-12.col-sm-9 
+                    input.form-control(type="password" value=`********` style="font-size: 12px; color: var(--color-text)" disabled)
+                .row.py-2.d-flex.align-items-center.justify-content-start
+                  .col-12 
+                    button.btn.btn-main.my-3.text-white.fw-bold.rounded.modal-trigger(tabindex=0 style="padding: 9px 18px") Change Password
+                .row.py-2.d-flex.align-items-center.justify-content-start
+                  .col-12.py-2
+                    h5.d-flex.align-items-center
+                      img(src="/img/icon-social.svg" style="width: 16px; margin-right: 10px")
+                      span Social Media Profiles
+                .row.py-2.d-flex.align-items-center.justify-content-start
+                  .col-12.col-sm-3.fw-bold.mb-2.mb-sm-0 Google ID:
+                  .col-12.col-sm-9 
+                    if user.google_id === null
+                      input.form-control(type="text" value=`` style="font-size: 12px; color: var(--color-text)" disabled)
+                    else
+                      input.form-control(type="text" value=`${user.google_id}` style="font-size: 12px; color: var(--color-text)" disabled)
+                .row.py-2.d-flex.align-items-center.justify-content-start
+                  .col-12.col-sm-3.fw-bold.mb-2.mb-sm-0 Google Image Link:
+                  .col-12.col-sm-9 
+                    if user.google_img === null
+                      input.form-control(type="text" value=`` style="font-size: 12px; color: var(--color-text)" disabled)
+                    else
+                      input.form-control(type="text" value=`${user.google_img}` style="font-size: 12px; color: var(--color-text)" disabled)
+                .row.py-2.d-flex.align-items-center.justify-content-start
+                  .col-12.col-sm-3.fw-bold.mb-2.mb-sm-0 Facebook ID:
+                  .col-12.col-sm-9 
+                    if user.facebook_id === null
+                      input.form-control(type="text" value=`` style="font-size: 12px; color: var(--color-text)" disabled)
+                    else
+                      input.form-control(type="text" value=`${user.facebook_id}` style="font-size: 12px; color: var(--color-text)" disabled)
+                .row.py-2.d-flex.align-items-center.justify-content-start
+                  .col-12.col-sm-3.fw-bold.mb-2.mb-sm-0 Facebook Image Link:
+                  .col-12.col-sm-9 
+                    if user.facebook_img === null
+                      input.form-control(type="text" value=`` style="font-size: 12px; color: var(--color-text)" disabled)
+                    else
+                      input.form-control(type="text" value=`${user.facebook_img}` style="font-size: 12px; color: var(--color-text)" disabled)
+                .row.py-2.d-flex.align-items-center.justify-content-start
+                  .col-12 
+                    button.btn.btn-main.my-3.text-white.fw-bold.rounded.modal-trigger(id="btn-clear-social" tabindex=0 style="padding: 9px 18px") Clear Social Media Links

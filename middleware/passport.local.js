@@ -13,7 +13,7 @@ passport.use(new LocalStrategy({ usernameField: "email", passwordField: "passwor
   (req, username, password, done) => {
     db.query("select * from user where email = ? ", [username],
       async (err, user) => {
-        if (err) console.log(err)
+        //if (err) console.log(err)
         if (!user) {
           return done("Email address and password combination not found.", false);
         } else {
@@ -36,8 +36,8 @@ passport.use(new LocalStrategy({ usernameField: "email", passwordField: "passwor
               }
             }
           } catch (err) {
-            console.log(err)
-            return done("Server error.", user);
+            //console.log(err)
+            return done("Email address and password combination not found.", user);
           }
         }
       }

@@ -23,42 +23,29 @@ router.post('/sign-up/',
 			});
 			password = hash
 		} catch (err) {
-			console.error(err)
+			console.error("Hash error:", err)
 		}
 
 		// Check if user already exists ...
     db.query("select * from user where email = ? ", [req.body.email],
       (err, user) => {
-        if (err) {
-					return res.status(500).json({ success: "failure", err: err })
-				}
+        if (err) return res.status(500).json({ success: false, err: err })
         if (!err && user.length !== 0) {
-					// user already existis. Update account with password ...
-					db.query("update user set password = ? where email = ?", [password, req.body.email],
-						(err, update) => {
-							console.log(err)
-							db.query("select * from user where email = ?", [req.body.email],
-							(err, user) => {
-								console.log(user)
-								req.login(user, (err) => {
-									if (err) return next(err)
-									return res.status(200).json({ success: true })
-								})
-							})
-						}
-					)
+          // User already exists ...
+          return res.status(400).json({ success: false, err: "User already exists." })
 				} else {
+					// New user ...
+          if (req.body.fname === undefined || req.body.fname === null || req.body.fname === "" ||
+              req.body.lname === undefined || req.body.lname === null || req.body.lname === "" ||
+              req.body.email === undefined || req.body.email === null || req.body.email === "" ||
+              req.body.password === undefined || req.body.password === null || req.body.password === "") return res.status(500).json({ success: false, err: "Please complete all requested fields." })
 					db.query("insert into user set fname = ?, lname = ?, email = ?, password = ?, provider = 'Local', user_active = 1", [req.body.fname, req.body.lname, req.body.email, password],
 						(err, user) => {
-							if (err) {
-								return res.status(500).json({ success: "failure", err: err })
-							}
+							if (err) return res.status(500).json({ success: false, err: err })
 							db.query("select * from user where email = ?", [req.body.email],
 							(err, user) => {
-								if (err) {
-										return res.status(500).json({ success: "failure", err: err })
-									}
-									req.login(user, (err) => {
+								if (err) return res.status(500).json({ success: false, err: err })
+									req.login (user, (err) => {
 										if (err) return next(err)
 										return res.status(200).json({ success: true })
 									})
@@ -89,7 +76,7 @@ router.post('/',
 				}
 
 				// On success ...
-        return res.status(200).json({ redirect: "/" });
+        return res.status(200).json({ redirect: "/profile/" });
 
 			})
 		}
@@ -107,7 +94,7 @@ router.get("/google/callback",
   (req, res) => {
 
 		// On success ...
-		res.redirect("/")
+		res.redirect("/profile/")
 
 	}
 )
@@ -123,7 +110,7 @@ router.get('/facebook/callback',
 	(req, res) => {
 
 		// On success ...
-		res.redirect("/")
+		res.redirect("/profile/")
 
 	}
 )
